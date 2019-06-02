@@ -1,5 +1,6 @@
-# Set JAVA_HOME to be the latest
-export JAVA_HOME=$(/usr/libexec/java_home)
+# Set JAVA_HOME to JDK10 for now
+#export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/Library/Java/Home_Java10
 
 # If you come from bash you might have to change your $PATH.
 export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/StudyBlue/qa:~/.local/bin:/bin:$PATH
@@ -104,7 +105,7 @@ export MYVIMRC="~/.config/nvim/init.vim"
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias ls=/usr/local/bin/exa
+alias ls=/usr/local/bin/lsd
 alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; brew upgrade"
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
