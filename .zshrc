@@ -77,23 +77,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -111,9 +94,19 @@ alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
 
+# Search for command in history and execute
+alias he="history |cut -c 8- | sk | bash"
+
+
 # For https://github.com/wting/autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # pipenv issue - https://github.com/pypa/pipenv/issues/538 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# Neovim as default editor
+export EDITOR='nvim'
+
+# Ignore dups when scrolling through shell history
+export HISTCONTROL=ignoredups
