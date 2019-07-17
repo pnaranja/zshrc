@@ -97,6 +97,12 @@ alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs d
 # Search for command in history and execute
 alias he="history |cut -c 8- | sk | bash"
 
+# For StudyBlue db migrate
+alias sbmigrate_prod="migrate --env=prod"
+
+# Update entries (for Boostnote and vim-wiki)
+alias update_entries="git add *; git commit -m \"Updating entries\"; git push"
+
 
 # For https://github.com/wting/autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
