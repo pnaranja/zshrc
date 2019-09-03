@@ -106,10 +106,8 @@ alias update_entries="git add *; git commit -m \"Updating entries\"; git push"
 # Print out all robot test scenarios.  Assume in a directory that has robot files
 alias robot_tests="l |rg -v ^d|awk \"{print $11}\"| xargs cat | rg \"^[a-zA-Z]\" |rg -i -v -e \"Library\" -e \"Resource\" -e \"Test_Teardown\" -e \"Documentation\" -e \"Test Teardown\" -e \"Set up\""
 
-
-
-# For https://github.com/wting/autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# For https://github.com/gsamokovarov/jump
+eval "$(jump shell)"
 
 # pipenv issue - https://github.com/pypa/pipenv/issues/538 
 export LANG=en_US.UTF-8
