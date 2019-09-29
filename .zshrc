@@ -1,6 +1,6 @@
 # Set JAVA_HOME to JDK10 for now
 #export JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_HOME=/Library/Java/Home_Java10
+export JAVA_HOME=/Library/Java/Home_Java11
 
 # If you come from bash you might have to change your $PATH.
 export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/StudyBlue/qa:~/.local/bin:/bin:$PATH
@@ -106,6 +106,9 @@ alias update_entries="git add *; git commit -m \"Updating entries\"; git push"
 # Print out all robot test scenarios.  Assume in a directory that has robot files
 alias robot_tests="l |rg -v ^d|awk \"{print $11}\"| xargs cat | rg \"^[a-zA-Z]\" |rg -i -v -e \"Library\" -e \"Resource\" -e \"Test_Teardown\" -e \"Documentation\" -e \"Test Teardown\" -e \"Set up\""
 
+# Clear DNS cache
+alias dns_clear="sudo dscacheutil -flushcache"
+
 # For https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
 
@@ -118,3 +121,12 @@ export EDITOR='nvim'
 
 # Ignore dups when scrolling through shell history
 export HISTCONTROL=ignoredups
+
+
+#OktaAWSCLI
+if [[ -f "$HOME/.okta/bash_functions" ]]; then
+    . "$HOME/.okta/bash_functions"
+fi
+if [[ -d "$HOME/.okta/bin" && ":$PATH:" != *":$HOME/.okta/bin:"* ]]; then
+    PATH="$HOME/.okta/bin:$PATH"
+fi
