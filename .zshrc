@@ -109,8 +109,12 @@ alias robot_tests="l |rg -v ^d|awk \"{print $11}\"| xargs cat | rg \"^[a-zA-Z]\"
 # Clear DNS cache
 alias dns_clear="sudo dscacheutil -flushcache"
 
-# For https://github.com/gsamokovarov/jump
-eval "$(jump shell)"
+# For https://github.com/euank/pazi
+if command -v pazi &>/dev/null; then
+  eval "$(pazi init zsh)"
+  alias js='z --pipe="sk"'
+  alias j='z'
+fi
 
 # pipenv issue - https://github.com/pypa/pipenv/issues/538 
 export LANG=en_US.UTF-8
