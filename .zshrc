@@ -6,7 +6,7 @@ export JAVA_HOME=/Library/Java/Home_Java11
 export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/StudyBlue/qa:~/.local/bin:/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/paul/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -88,7 +88,7 @@ export MYVIMRC="~/.config/nvim/init.vim"
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias ls=/usr/local/bin/lsd
+#alias ls=/usr/local/bin/lsd
 alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; brew upgrade"
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
