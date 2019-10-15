@@ -87,6 +87,9 @@ export MYVIMRC="~/.config/nvim/init.vim"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+if $(uname)=='Linux'; then
+    export VIMRUNTIME=~/neovim/runtime
+
 # Aliases
 #alias ls=/usr/local/bin/lsd
 alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; brew upgrade"
