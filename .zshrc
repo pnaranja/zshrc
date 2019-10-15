@@ -92,7 +92,7 @@ if [[ $(uname) = 'Linux' ]]; then
 fi
 
 # Aliases
-#alias ls=/usr/local/bin/lsd
+alias ls=~/.cargo/bin/lsd
 alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; brew upgrade"
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
