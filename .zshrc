@@ -1,3 +1,11 @@
+#OktaAWSCLI
+if [[ -f "$HOME/.okta/bash_functions" ]]; then
+    . "$HOME/.okta/bash_functions"
+fi
+if [[ -d "$HOME/.okta/bin" && ":$PATH:" != *":$HOME/.okta/bin:"* ]]; then
+    PATH="$HOME/.okta/bin:$PATH"
+fi
+
 # Set JAVA_HOME to JDK10 for now
 #export JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME=/Library/Java/Home_Java11
@@ -113,6 +121,9 @@ alias robot_tests="l |rg -v ^d|awk \"{print $11}\"| xargs cat | rg \"^[a-zA-Z]\"
 # Clear DNS cache
 alias dns_clear="sudo dscacheutil -flushcache"
 
+# Automate Okta-AWS login
+alias okta-login="okta-aws; okta-aws chegg-aws-shared-nonprod ecr get-login --no-include-email |bash"
+
 # For https://github.com/euank/pazi
 if command -v pazi &>/dev/null; then
   eval "$(pazi init zsh)"
@@ -130,11 +141,4 @@ export EDITOR='nvim'
 # Ignore dups when scrolling through shell history
 export HISTCONTROL=ignoredups
 
-
-#OktaAWSCLI
-if [[ -f "$HOME/.okta/bash_functions" ]]; then
-    . "$HOME/.okta/bash_functions"
-fi
-if [[ -d "$HOME/.okta/bin" && ":$PATH:" != *":$HOME/.okta/bin:"* ]]; then
-    PATH="$HOME/.okta/bin:$PATH"
-fi
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
