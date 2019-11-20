@@ -105,7 +105,7 @@ alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; 
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
-alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\")"
+alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\") 2> /dev/null"
 
 # Search for command in history and execute
 alias he="history |cut -c 8- | sk | bash"
@@ -114,7 +114,7 @@ alias he="history |cut -c 8- | sk | bash"
 alias sbmigrate_prod="migrate --env=prod"
 
 # Update entries (for Boostnote and vim-wiki)
-alias update_entries="git add *; git commit -m \"Updating entries\"; git push"
+alias update_entries="git add .; git commit -m \"Updating entries\"; git push"
 
 # Print out all robot test scenarios.  Assume in a directory that has robot files
 alias robot_tests="l |rg -v ^d|awk \"{print $11}\"| xargs cat | rg \"^[a-zA-Z]\" |rg -i -v -e \"Library\" -e \"Resource\" -e \"Test_Teardown\" -e \"Documentation\" -e \"Test Teardown\" -e \"Set up\""
