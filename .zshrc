@@ -105,6 +105,7 @@ alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; 
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
+alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\")"
 
 # Search for command in history and execute
 alias he="history |cut -c 8- | sk | bash"
