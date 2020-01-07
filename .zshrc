@@ -125,6 +125,9 @@ alias dns_clear="sudo dscacheutil -flushcache"
 # Automate Okta-AWS login
 alias okta-login="okta-aws; okta-aws chegg-aws-shared-nonprod ecr get-login --no-include-email |bash"
 
+# git pull all subdirectories
+alias git_pull_all="ls -l|awk '{print \$11}' | xargs -I {} sh -c \"echo {}; cd {}; git pull; cd ..\" "
+
 # For https://github.com/euank/pazi
 if command -v pazi &>/dev/null; then
   eval "$(pazi init zsh)"
