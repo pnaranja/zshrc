@@ -108,7 +108,7 @@ alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs d
 alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\") 2> /dev/null"
 
 # Search for command in history and execute
-alias he="history |cut -c 8- | sk | bash"
+alias he="history |cut -c 8- | sk | xargs -t bash"
 
 # For StudyBlue db migrate
 alias sbmigrate_prod="migrate --env=prod"
