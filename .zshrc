@@ -11,7 +11,7 @@ fi
 export JAVA_HOME=/Library/Java/Home_Java11
 
 # If you come from bash you might have to change your $PATH.
-export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/StudyBlue/qa:~/.local/bin:/bin:$PATH
+export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.local/bin:/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -101,14 +101,14 @@ fi
 
 # Aliases
 alias ls=~/.cargo/bin/lsd
-alias brewup="brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall; brew upgrade"
+alias brewup="brew upgrade; brew cask outdated | cut -d ' ' -f 1 | xargs brew cask reinstall"
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
 alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\") 2> /dev/null"
 
 # Search for command in history and execute
-alias he="history |cut -c 8- | sk | xargs -t bash"
+alias he="history |cut -c 8- | sk | zsh"
 
 # For StudyBlue db migrate
 alias sbmigrate_prod="migrate --env=prod"
