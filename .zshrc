@@ -11,7 +11,7 @@ fi
 export JAVA_HOME=/Library/Java/Home_Java11
 
 # If you come from bash you might have to change your $PATH.
-export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.local/bin:/bin:$PATH
+export PATH=.:~/nim/Nim/bin:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.local/bin:/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
