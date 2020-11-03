@@ -11,7 +11,6 @@ fi
 export JAVA_HOME=/Library/Java/Home_Java11
 
 # If you come from bash you might have to change your $PATH.
-export PATH=.:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.local/bin:/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -106,6 +105,8 @@ alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
 alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\") 2> /dev/null"
+alias ldd="otool -L"
+
 
 # SK
 alias skb=" sk -b 'ctrl-o:execute(open {}),ctrl-v:execute(nvim {})' "
@@ -149,4 +150,4 @@ export EDITOR='nvim'
 # Ignore dups when scrolling through shell history
 export HISTCONTROL=ignoredups
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=.:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/llvm/bin:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.local/bin:/bin:$PATH
