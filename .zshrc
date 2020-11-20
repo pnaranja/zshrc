@@ -112,7 +112,7 @@ alias ldd="otool -L"
 alias skb=" sk -b 'ctrl-o:execute(open {}),ctrl-v:execute(nvim {})' "
 
 # Search for command in history and execute
-alias he="history |cut -c 8- | sk | zsh"
+alias he="history |cut -c 8- | sk | zsh -x"
 
 # For StudyBlue db migrate
 alias sbmigrate_prod="migrate --env=prod"
