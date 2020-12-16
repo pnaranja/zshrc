@@ -100,7 +100,7 @@ fi
 
 # Aliases
 alias ls=~/.cargo/bin/lsd
-alias brewup="brew upgrade; brew outdated --cask --greedy | cut -d ' ' -f 1 | xargs brew cask reinstall"
+alias brewup="brew upgrade; brew outdated --cask --greedy | cut -d ' ' -f 1 | xargs brew reinstall --cask"
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
