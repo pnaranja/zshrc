@@ -104,7 +104,7 @@ alias brewup="brew upgrade; brew outdated --cask --greedy | cut -d ' ' -f 1 | xa
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
 alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
-alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\") 2> /dev/null"
+alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\"); docker images|rg none|awk '{print $3}'|xargs docker rmi 2> /dev/null"
 alias ldd="otool -L"
 
 
@@ -127,7 +127,7 @@ alias robot_tests="l |rg -v ^d|awk \"{print $11}\"| xargs cat | rg \"^[a-zA-Z]\"
 alias dns_clear="sudo dscacheutil -flushcache"
 
 # Automate Okta-AWS login
-alias okta-login="okta-aws chegg-aws-shared-nonprod ecr get-login-password | docker login --username AWS --password-stdin 342484191705.dkr.ecr.us-west-2.amazonaws.com"
+alias okta-docker-login="okta-aws chegg-aws-shared-nonprod ecr get-login-password | docker login --username AWS --password-stdin 342484191705.dkr.ecr.us-west-2.amazonaws.com"
 alias okta-robot-login="okta-aws default sts get-caller-identity"
 
 # git pull all subdirectories
