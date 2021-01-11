@@ -129,6 +129,7 @@ alias dns_clear="sudo dscacheutil -flushcache"
 # Automate Okta-AWS login
 alias okta-docker-login="okta-aws chegg-aws-shared-nonprod ecr get-login-password | docker login --username AWS --password-stdin 342484191705.dkr.ecr.us-west-2.amazonaws.com"
 alias okta-robot-login="okta-aws default sts get-caller-identity"
+alias okta-login="okta-docker-login; okta-robot-login"
 
 # git pull all subdirectories
 alias git_pull_all="ls -l|awk '{print \$11}' | xargs -I {} sh -c \"echo {}; cd {}; git pull; cd ..\" "
