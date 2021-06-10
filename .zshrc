@@ -98,13 +98,11 @@ if [[ $(uname) = 'Linux' ]]; then
     export VIMRUNTIME=~/neovim/runtime
 fi
 
-# Aliases
+### Aliases
 alias ls=~/.cargo/bin/lsd
 alias brewup="brew upgrade; brew outdated --cask --greedy | cut -d ' ' -f 1 | xargs brew reinstall --cask"
 alias _ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias open_failed="rg -e 'status.*failed' -e 'status.*error' target/cucumber_results_html/*/report.js --files-with-matches |awk -F/ '{print \$3}' |xargs -I {} open target/cucumber_results_html/{}/index.html"
-alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
-alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\"); docker images|rg none|awk '{print $3}'|xargs docker rmi 2> /dev/null"
 alias ldd="otool -L"
 
 
@@ -129,10 +127,27 @@ alias dns_clear="sudo dscacheutil -flushcache"
 # Automate Okta-AWS login
 alias okta-docker-login="okta-aws chegg-aws-shared-nonprod ecr get-login-password | docker login --username AWS --password-stdin 342484191705.dkr.ecr.us-west-2.amazonaws.com"
 alias okta-robot-login="okta-aws default sts get-caller-identity"
-alias okta-login="okta-docker-login; okta-robot-login"
+alias okta-login="okta-robot-login; okta-docker-login"
 
 # git pull all subdirectories
 alias git_pull_all="ls -l|awk '{print \$11}' | xargs -I {} sh -c \"echo {}; cd {}; git pull; cd ..\" "
+
+## Prod Proxy
+# Pre-reqs: 
+# https://chegg.atlassian.net/wiki/spaces/DevOps/pages/1331580/Okta+ASA+Start+Here
+# https://chegg.atlassian.net/wiki/spaces/~jandrade@chegg.com/pages/298649559/How+to+Set+Up+a+SOCKS5+SSH+Tunnel+for+Production+Access
+alias prodproxy="kill \$(lsof -i :9080 | awk 'NR>1 {print \$2}' | uniq); kill \$(lsof -i :9081 | awk 'NR>1 {print \$2}' | uniq); ssh -fqN -D 9080 jump01.core2.cloud.cheggnet.com -o ExitOnForwardFailure=yes && hpts -s localhost:9080 -p 9081 > /dev/null 2>&1 &"
+
+## Docker aliases
+# Start container for growth-enablement-tests
+alias docker_start_gce="docker run -v /Users/paul/.aws/:/root/.aws -v /Users/paul/Chegg/robot-for-chegg-com:/root/robot/tmp/robot-for-chegg-com -v /Users/paul/Chegg/gne/growth-enablement-robot-tests:/mnt/tests --name urf --entrypoint bash -p 5910:5910 -d 342484191705.dkr.ecr.us-west-2.amazonaws.com/robot-for-chegg-com:latest /root/robot/robot/helpers/vnc-start.sh"
+
+# bring all running docker containers down
+alias docker_all_down="docker ps -a |rg -v CONTAINER |awk '{print \$1}' |xargs docker rm -f"
+
+# Clean up any "orphaned" docker images 
+alias docker_cleanup_images="docker rmi \$(docker images -qa -f \"dangling=true\"); docker images|rg none|awk '{print $3}'|xargs docker rmi 2> /dev/null"
+
 
 # For https://github.com/euank/pazi
 if command -v pazi &>/dev/null; then
@@ -155,4 +170,4 @@ export HISTCONTROL=ignoredups
 export CPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
 export LIBRARY_PATH=$LIBRARY_PATH:/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/lib
 
-export PATH=.:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/llvm/bin:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.local/bin:/bin:$PATH
+export PATH=.:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/llvm/bin:$JAVA_HOME/bin:/usr/local/bin:~/.cargo/bin:~/.nimble/bin:~/.vmodules/bin:~/.local/bin:/bin:$PATH
